@@ -11,7 +11,7 @@ yarn-error.log*
 .pnp.js
 
 # Next.js build output
-/.next/
+companies_manager/.next/
 
 # Next.js static files
 /out/
