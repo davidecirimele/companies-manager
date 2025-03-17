@@ -1,0 +1,119 @@
+[
+    {
+      "id": 1,
+      "name": "Tech Innovators",
+      "email": "info@techinnovators.com",
+      "phone": "3491234567",
+      "employees": {},
+      "address": {
+        "street": "Via Roma, 10",
+        "city": "Milano",
+        "postalCode": "20100",
+        "country": "Italia"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Green Energy Solutions",
+      "email": "contact@greenenergy.com",
+      "phone": "3482345678",
+      "employees": {},
+      "address": {
+        "street": "Corso Vittorio Emanuele, 25",
+        "city": "Torino",
+        "postalCode": "10100",
+        "country": "Italia"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Foodies Delight",
+      "email": "hello@foodiesdelight.com",
+      "phone": "3473456789",
+      "employees": {},
+      "address": {
+        "street": "Piazza Navona, 15",
+        "city": "Roma",
+        "postalCode": "00100",
+        "country": "Italia"
+      }
+    },
+    {
+      "id": 4,
+      "name": "EduTech Academy",
+      "email": "support@edutechacademy.com",
+      "phone": "3464567890",
+      "employees": {},
+      "address": {
+        "street": "Via Garibaldi, 8",
+        "city": "Firenze",
+        "postalCode": "50100",
+        "country": "Italia"
+      }
+    },
+    {
+      "id": 5,
+      "name": "HealthFirst Clinic",
+      "email": "appointments@healthfirst.com",
+      "phone": "3455678901",
+      "employees": {},
+      "address": {
+        "street": "Viale della Libertà, 20",
+        "city": "Napoli",
+        "postalCode": "80100",
+        "country": "Italia"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Travel Wonders",
+      "email": "booking@travelwonders.com",
+      "phone": "3446789012",
+      "employees": {},
+      "address": {
+        "street": "Lungomare, 50",
+        "city": "Genova",
+        "postalCode": "16100",
+        "country": "Italia"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Fashion Forward",
+      "email": "contact@fashionforward.com",
+      "phone": "3437890123",
+      "employees": {},
+      "address": {
+        "street": "Via Montenapoleone, 3",
+        "city": "Milano",
+        "postalCode": "20121",
+        "country": "Italia"
+      }
+    },
+    {
+      "id": 8,
+      "name": "AutoMoto Experts",
+      "email": "service@automotoexperts.com",
+      "phone": "3428901234",
+      "employees": {},
+      "address": {
+        "street": "Via Emilia, 45",
+        "city": "Bologna",
+        "postalCode": "40100",
+        "country": "Italia"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Home Comforts",
+      "email": "sales@homecomforts.com",
+      "phone": "3419012345",
+      "employees": {},
+      "address": {
+        "street": "Via Toledo, 12",
+        "city": "Napoli",
+        "postalCode": "80134",
+        "country": "Italia"
+      }
+    }
+  ]

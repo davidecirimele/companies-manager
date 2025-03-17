@@ -1,0 +1,29 @@
+.card-container{
+    width: 300px;
+    height: fit-content;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.card-heading{
+    color: black;
+}
+
+.card-info{
+    color: black;
+}
+
+.card-info-street{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.card-container:hover{
+    transform: scale(1.20);
+}
