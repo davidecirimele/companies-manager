@@ -1,4 +1,4 @@
-type Company = {
+interface Company {
     id: number, 
     name: string,
     email: string,

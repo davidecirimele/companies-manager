@@ -7,7 +7,7 @@ export default async function Home() {
   return (
     <div className="wrapper">
       <div className="header-container">
-        <h1>Companies List</h1>
+        <h1>Companies</h1>
       </div>
       <div className="content-container">
         <ul className="companies-list">

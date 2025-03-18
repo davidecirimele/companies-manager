@@ -27,3 +27,37 @@
 .card-container:hover{
     transform: scale(1.20);
 }
+
+.form-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+    margin: 5vh;
+  }
+  
+  .form-control{
+    background-color: white;
+    border-radius: 15px;
+    width: 200%;
+  }
+  
+  .buttons-wrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    justify-content: center;
+  }
+  
+  .form-button{
+    width: 150px;
+  }

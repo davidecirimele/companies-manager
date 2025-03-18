@@ -1,12 +1,7 @@
 import styles from './styles.module.css';
+import { types } from 'util';
 
-interface CompanyProps{
-    id: number;
-    name: string;
-    phone: string;
-    address: Address;
-}
-export function CompanyCard({name, phone, address}:CompanyProps) {
+export function CompanyCard({name, phone, address}:Company) {
     return (
         <div className={styles['card-container']}>
             <h3 className={styles['card-heading']}>{name}</h3>

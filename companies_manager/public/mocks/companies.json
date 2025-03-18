@@ -9,7 +9,7 @@
         "street": "Via Roma, 10",
         "city": "Milano",
         "postalCode": "20100",
-        "country": "Italia"
+        "country": "Italy"
       }
     },
     {
@@ -22,7 +22,7 @@
         "street": "Corso Vittorio Emanuele, 25",
         "city": "Torino",
         "postalCode": "10100",
-        "country": "Italia"
+        "country": "Italy"
       }
     },
     {
@@ -35,7 +35,7 @@
         "street": "Piazza Navona, 15",
         "city": "Roma",
         "postalCode": "00100",
-        "country": "Italia"
+        "country": "Italy"
       }
     },
     {
@@ -48,7 +48,7 @@
         "street": "Via Garibaldi, 8",
         "city": "Firenze",
         "postalCode": "50100",
-        "country": "Italia"
+        "country": "Italy"
       }
     },
     {
@@ -61,7 +61,7 @@
         "street": "Viale della Libertà, 20",
         "city": "Napoli",
         "postalCode": "80100",
-        "country": "Italia"
+        "country": "Italy"
       }
     },
     {
@@ -74,7 +74,7 @@
         "street": "Lungomare, 50",
         "city": "Genova",
         "postalCode": "16100",
-        "country": "Italia"
+        "country": "Italy"
       }
     },
     {
@@ -87,7 +87,7 @@
         "street": "Via Montenapoleone, 3",
         "city": "Milano",
         "postalCode": "20121",
-        "country": "Italia"
+        "country": "Italy"
       }
     },
     {
@@ -100,7 +100,7 @@
         "street": "Via Emilia, 45",
         "city": "Bologna",
         "postalCode": "40100",
-        "country": "Italia"
+        "country": "Italy"
       }
     },
     {
@@ -113,7 +113,7 @@
         "street": "Via Toledo, 12",
         "city": "Napoli",
         "postalCode": "80134",
-        "country": "Italia"
+        "country": "Italy"
       }
     }
   ]

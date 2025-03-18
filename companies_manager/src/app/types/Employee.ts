@@ -1,4 +1,4 @@
-type Employee = {
+interface Employee {
     id: number, 
     name: string,
     surname: string,

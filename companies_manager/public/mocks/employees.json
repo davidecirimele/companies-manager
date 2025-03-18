@@ -1,0 +1,77 @@
+[
+    {
+      "id": 1,
+      "name": "Davide",
+      "surname": "Cirimele",
+      "email": "davi@google.com",
+      "phone": "3491234567",
+      "role": "Tecnico",
+      "company": 1,
+      "address": {
+        "street": "Via Roma, 10",
+        "city": "Milano",
+        "postalCode": "20100",
+        "country": "Italia"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Luca",
+      "surname": "Rossi",
+      "email": "luca.rossi@example.com",
+      "phone": "3482345678",
+      "role": "Amministratore",
+      "company": 2,
+      "address": {
+        "street": "Corso Vittorio Emanuele, 25",
+        "city": "Torino",
+        "postalCode": "10100",
+        "country": "Italia"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Maria",
+      "surname": "Bianchi",
+      "email": "maria.bianchi@example.com",
+      "phone": "3473456789",
+      "role": "Responsabile Marketing",
+      "company": 3,
+      "address": {
+        "street": "Piazza Navona, 15",
+        "city": "Roma",
+        "postalCode": "00100",
+        "country": "Italia"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Giuseppe",
+      "surname": "Verdi",
+      "email": "giuseppe.verdi@example.com",
+      "phone": "3464567890",
+      "role": "Sviluppatore",
+      "company": 1,
+      "address": {
+        "street": "Via Garibaldi, 8",
+        "city": "Firenze",
+        "postalCode": "50100",
+        "country": "Italia"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Elena",
+      "surname": "Neri",
+      "email": "elena.neri@example.com",
+      "phone": "3455678901",
+      "role": "Designer",
+      "company": 2,
+      "address": {
+        "street": "Viale della Libertà, 20",
+        "city": "Napoli",
+        "postalCode": "80100",
+        "country": "Italia"
+      }
+    }
+  ]
