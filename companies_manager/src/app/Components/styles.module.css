@@ -1,5 +1,10 @@
 .card-container{
-    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    max-width: 400px;
     height: fit-content;
     background-color: white;
     padding: 2rem;
@@ -24,9 +29,7 @@
     align-items: flex-start;
 }
 
-.card-container:hover{
-    transform: scale(1.20);
-}
+
 
 .form-container{
     display: flex;
@@ -47,17 +50,22 @@
   
   .form-control{
     background-color: white;
-    border-radius: 15px;
+    color: black;
+    border-radius: 5px;
     width: 200%;
   }
-  
-  .buttons-wrapper{
-    display: flex;
-    flex-direction: row;
-    gap: 5%;
-    justify-content: center;
+
+  .edit-button{
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in;
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 1rem;
   }
-  
-  .form-button{
-    width: 150px;
-  }
+
+  .edit-button:hover{
+    transform: scale(1.20);
+}

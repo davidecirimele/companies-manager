@@ -82,6 +82,18 @@ a {
   margin: 2vw;
 }
 
+.buttons-wrapper{
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  margin: 5rem;
+  justify-content: center;
+}
+
+.form-button{
+  width: 150px;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

@@ -1,39 +1,30 @@
+"use client";
+
 import styles from './styles.module.css';
-import { types } from 'util';
 
-function setName(name: string) {
+export default function CompanyForm({ name, setName, email, setEmail, phone, setPhone, street, setStreet, city, setCity, country, setCountry, countryCode, setCountryCode, postalCode, setPostalCode} : any) {
     
-}
 
-function setEmail(email: string) {
-    
-}
-
-function setAddress(address: string) {
-    
-}
-
-function setPhone(phone: string) {
-    
-}
-
-export function CompanyForm({name, email, phone, address}:CompanyBase) {
     return (
         <div className={styles["form-container"]}>
-            <div className={styles["form"]}>
+            <form className={styles["form"]}>
                 <label className={styles["form-label"]}>Company Name</label>
-                <input id="name" type="text" className={styles["form-control"]} value={name}></input>
+                <input id="name" type="text" className={styles["form-control"]} value={name} onChange={(e) => setName(e.target.value)}></input>
                 <label className={styles["form-label"]}>Email</label>
-                <input id = "email" type="text" className={styles["form-control"]} value={email}></input>
+                <input id = "email" type="text" className={styles["form-control"]} value={email} onChange={(e) => setEmail(e.target.value)}></input>
                 <label className={styles["form-label"]}>Phone</label>
-                <input id = "phone" type="text" className={styles["form-control"]} value={phone}></input>
-                <label className={styles["form-label"]}>Address</label>
-                <input id="address" type="text" className={styles["form-control"]} value={address}></input> 
-            </div>
-            <div className={styles["buttons-wrapper"]}> 
-                <button className={styles["form-button"]} id="saveButton">Save</button>
-                <button className={styles["form-button"]} id="clearButton">Clear</button>
-            </div>
+                <input id = "phone" type="text" className={styles["form-control"]} value={phone} onChange={(e) => setPhone(e.target.value)}></input>
+                <label className={styles["form-label"]}>Address Street</label>
+                <input id="address" type="text" className={styles["form-control"]} value={street} onChange={(e) => setStreet(e.target.value)}></input> 
+                <label className={styles["form-label"]}>Address City</label>
+                <input id="address" type="text" className={styles["form-control"]} value={city} onChange={(e) => setCity(e.target.value)}></input> 
+                <label className={styles["form-label"]}>Address Country</label>
+                <input id="address" type="text" className={styles["form-control"]} value={country} onChange={(e) => setCountry(e.target.value)}></input> 
+                <label className={styles["form-label"]}>Address Country Code</label>
+                <input id="address" type="text" className={styles["form-control"]} value={countryCode} onChange={(e) => setCountryCode(e.target.value)}></input> 
+                <label className={styles["form-label"]}>Address Postal Code</label>
+                <input id="address" type="text" className={styles["form-control"]} value={postalCode} onChange={(e) => setPostalCode(e.target.value)}></input> 
+            </form> 
         </div>
     );
   }

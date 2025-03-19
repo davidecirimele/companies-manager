@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fsPromises from 'fs/promises';
 import path from 'path';
+import crypto from 'crypto';
 
 const companiesFilePath = path.join(process.cwd(), 'public/mocks/companies.json');
 
@@ -15,6 +16,34 @@ export async function GET() {
       { status: 404, headers: { 'Content-Type': 'application/json' } }
     );
   }
+}
+
+export async function POST(req: NextRequest) {
+    try {
+        const res = await fsPromises.readFile(companiesFilePath, 'utf8');
+    
+        const jsonArray = JSON.parse(res);
+
+        const { name, email, phone, employees, address } = await req.json();
+
+        const id = crypto.randomBytes(16).toString('hex');
+    
+        jsonArray.push({ id, name, email, phone, employees, address });
+
+        const updatedData = JSON.stringify(jsonArray);
+
+        await fsPromises.writeFile(companiesFilePath, updatedData);
+
+        return new NextResponse(
+            JSON.stringify({ message: 'Company created successfully' }),
+            { status: 200, headers: { 'Content-Type': 'application/json' } }
+        );
+    } catch (error) {
+        return new NextResponse(
+            JSON.stringify({ message: 'Server Error', error: 'Error reading file or parsing data' }),
+            { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
+    }
 }
 
 export async function PATCH(req: NextRequest) {

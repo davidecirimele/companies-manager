@@ -17,6 +17,32 @@ export async function GET() {
   }
 }
 
+export async function POST(req: NextRequest) {
+    try {
+        const res = await fsPromises.readFile(addressesFilePath, 'utf8');
+    
+        const jsonArray = JSON.parse(res);
+
+        const { street, postalCode, city, countryCode, country, text } = await req.json();
+    
+        jsonArray.push({ street, postalCode, city, countryCode, country, text });
+
+        const updatedData = JSON.stringify(jsonArray);
+
+        await fsPromises.writeFile(addressesFilePath, updatedData);
+
+        return new NextResponse(
+            JSON.stringify({ message: 'Address created successfully' }),
+            { status: 200, headers: { 'Content-Type': 'application/json' } }
+        );
+    } catch (error) {
+        return new NextResponse(
+            JSON.stringify({ message: 'Server Error', error: 'Error reading file or parsing data' }),
+            { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
+    }
+}
+
 export async function PATCH(req: NextRequest) {
     const res = await fsPromises.readFile(addressesFilePath, 'utf8');
     

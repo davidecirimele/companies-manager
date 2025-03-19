@@ -12,7 +12,7 @@ export default async function Home() {
       <div className="content-container">
         <ul className="companies-list">
             {companies.map((company: Company) => (
-              <li key={company.id}><CompanyCard id={company.id} name={company.name} phone={company.phone} address={company.address}/></li>
+              <li key={company.id}><CompanyCard id={company.id} name={company.name} phone={company.phone} email={company.email} address={company.address}/></li>
           ))}
         </ul>
       </div>

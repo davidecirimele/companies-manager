@@ -37,7 +37,6 @@ export async function DELETE(req: NextRequest) {
         let desiredEmployee = jsonArray[EmployeeIndex];
 
         //IMPLEMENTARE ELIMINAZIONE
-        jsonArray.
         
         
     } catch (error) {
