@@ -1,15 +1,16 @@
 "use client";
 
 import { CompanyCard } from "@/app/Components/CompanyCard";
-import { notFound } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import React from "react";
 import { useApi } from '@/app/api/api';
 import { EmployeeCard } from "@/app/Components/EmployeeCard";
 
-export default function CompanyPage({ params }: { params: {id: string} }) {
+export default function CompanyPage() {
     const { getCompany, getCompanyEmployees } = useApi();
-    const id = params.id;
+    const params = useParams();
+    const id = params.id as string;
     const [company, setCompany] = useState<Company>({});
     const [employees, setEmployees] = useState<Employee[]>([]);
 

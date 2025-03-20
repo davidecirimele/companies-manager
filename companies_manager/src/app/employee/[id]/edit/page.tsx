@@ -1,6 +1,6 @@
 "use client";
 
-import { redirect,notFound } from "next/navigation";
+import { redirect,notFound, useParams } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { useApi } from "@/app/api/api"
 import AddressForm  from "@/app/Components/AddressForm";
@@ -61,9 +61,10 @@ async function handleSubmit(event: React.FormEvent, form_data: Object, editEmplo
     setCity("");
     }
 
-export default function editEmployee({ params }: { params: {id: string} }) {
+export default function editEmployee() {
     const { getEmployee, editEmployee } = useApi();
-    const id = params.id;
+    const params = useParams();
+    const id = params.id as string;
     const [employee, setEmployee] = useState<Partial<Employee>>({});
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");

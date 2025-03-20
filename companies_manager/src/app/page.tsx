@@ -5,7 +5,7 @@ import { CompanyCard } from "./Components/CompanyCard";
 import { useApi } from '@/app/api/api';
 
 export default function Home() {
-  const { getAllCompanies, companies } = useApi();
+  const { getAllCompanies,companies } = useApi();
 
   useEffect(() => {
     getAllCompanies();
