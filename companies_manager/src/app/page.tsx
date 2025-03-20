@@ -1,8 +1,15 @@
-import { CompanyCard } from "./Components/CompanyCard";
+"use client";
 
-export default async function Home() {
-  const response = await fetch("http://localhost:3000/api/companies");
-  const companies = await response.json();
+import { useState, useEffect } from "react";
+import { CompanyCard } from "./Components/CompanyCard";
+import { useApi } from '@/app/api/api';
+
+export default function Home() {
+  const { getAllCompanies, companies } = useApi();
+
+  useEffect(() => {
+    getAllCompanies();
+  }, [companies]);
 
   return (
     <div className="wrapper">

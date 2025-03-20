@@ -1,10 +1,10 @@
 interface Employee {
-    id: number, 
+    id?: string, 
     name: string,
     surname: string,
     email: string,
     phone: string,
     role: string,
-    company: Company,
+    company: string,
     address: Address
 }

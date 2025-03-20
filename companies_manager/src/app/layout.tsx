@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import { ApiProvider } from "@/app/api/api";
 import "./globals.css";
-
+import Link from 'next/link'; // Importa Link
 
 export const metadata: Metadata = {
   title: "Companies Manager",
@@ -11,9 +10,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body>
@@ -21,14 +20,16 @@ export default function RootLayout({
         <div className="container-fluid">
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-                <a className="nav-link active" aria-current="page" href="/">Home</a>
-                <a className="nav-link active" aria-current="page" href="/company/new">Add new Company</a>
-                <a className="nav-link active" aria-current="page" href="/employee/new">Add new Employee</a>
+                <Link className="nav-link active" aria-current="page" href="/">Home</Link>
+                <Link className="nav-link active" aria-current="page" href="/company/new">Add new Company</Link>
+                <Link className="nav-link active" aria-current="page" href="/employee/new">Add new Employee</Link>
             </div>
           </div>
         </div>
-      </nav>
-        {children}
+        </nav>
+        <ApiProvider>
+          {children}
+        </ApiProvider>
       </body>
     </html>
   );
