@@ -7,7 +7,7 @@ import AddressForm from '@/app/Components/AddressForm';
 import EmployeeForm from '@/app/Components/EmployeeForm';
 import { useState, useEffect } from "react";
 
-async function handleSubmit(event: React.FormEvent, form_data: Object, createEmployee: any) {
+async function handleSubmit(event: React.FormEvent, form_data: Object) {
     event.preventDefault();
     let isFormValid = true;
 
@@ -44,37 +44,54 @@ async function handleSubmit(event: React.FormEvent, form_data: Object, createEmp
             address: address
         }
 
-        createEmployee(employee);
+        const response = await fetch('http://localhost:4000/api/employees/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(employee)
+        });
+
+        console.log(response);
     }
   }
 
-  function handleClear(setName: any, setSurname: any, setEmail: any, setPhone: any, setCompany: any, setRole: any, setStreet: any, setCountry: any, setPostalCode: any, setCountryCode: any, setCity: any) {
-      setName("");
-      setSurname("");
-    setEmail("");
-      setPhone("");
-      setCompany("");
-      setRole("");
-    setStreet("");
-    setCountry("");
-    setPostalCode("");
-    setCountryCode("");
-    setCity("");
+function handleClear( setForm1:any, setForm2:any) {
+    setForm1({
+        name : "",
+        surname: "",
+        email: "",
+        phone: "",
+        company_id: "",
+        role: ""
+    });
+
+    setForm2({
+        street: "",
+        country: "",
+        postalCode: "",
+        countryCode: "",
+        city: ""
+    })
     }
 
 export default function createEmployee() {
-    const { createEmployee } = useApi();
-    const [name, setName] = useState("");
-    const [surname, setSurname] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [company_id, setCompany] = useState("");
-    const [role, setRole] = useState("");
-    const [street, setStreet] = useState("");
-    const [country, setCountry] = useState("");
-    const [postalCode, setPostalCode] = useState("");
-    const [countryCode, setCountryCode] = useState("");
-    const [city, setCity] = useState("");
+    const [employeeform, setEmployeeForm] = useState({
+        name : "",
+        surname: "",
+        email: "",
+        phone: "",
+        company_id: "",
+        role: ""
+    });
+
+    const [addressform, setAddressForm] = useState({
+        street: "",
+        country: "",
+        postalCode: "",
+        countryCode: "",
+        city: ""
+    });
     
   return (
     <div className="wrapper">
@@ -82,11 +99,11 @@ export default function createEmployee() {
         <h1>Add Employee</h1>
         </div>
         <div className="content-container">
-            <EmployeeForm name={name} setName={setName} surname={surname} setSurname={setSurname} email={email} setEmail={setEmail} phone={phone} setPhone={setPhone} company_id={company_id} setCompany={setCompany} role={role} setRole={setRole}></EmployeeForm>
-              <AddressForm street={street} setStreet={setStreet} city={city} setCity={setCity} country={country} setCountry={setCountry} countryCode={countryCode} setCountryCode={setCountryCode} postalCode={postalCode} setPostalCode = {setPostalCode}></AddressForm>
+            <EmployeeForm form={employeeform} setForm={setEmployeeForm}></EmployeeForm>
+              <AddressForm form={addressform} setForm={ setAddressForm}></AddressForm>
               <div className="buttons-wrapper"> 
-                  <button type="submit" className="form-button" id="saveButton" onClick={(e) => handleSubmit(e, { name, surname, email, phone, company_id, role, street, country, postalCode, countryCode, city}, createEmployee)}>Add Employee</button>
-                    <button className="form-button" id="clearButton" onClick={() => handleClear(setName, setSurname, setEmail, setPhone, setCompany, setRole, setStreet, setCountry, setPostalCode, setCountryCode, setCity)}>Clear</button>
+                  <button type="submit" className="form-button" id="saveButton" onClick={(e) => handleSubmit(e, { ...employeeform, ...addressform })}>Add Employee</button>
+                    <button className="form-button" id="clearButton" onClick={() => handleClear(setEmployeeForm, setAddressForm)}>Clear</button>
               </div>
         </div>
     </div>

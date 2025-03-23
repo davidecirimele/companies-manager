@@ -2,14 +2,23 @@
 
 import { useState, useEffect } from "react";
 import { CompanyCard } from "./Components/CompanyCard";
-import { useApi } from '@/app/api/api';
 
 export default function Home() {
-  const { getAllCompanies,companies } = useApi();
+  const [companies, setCompanies] = useState<Company[]>([]);
 
   useEffect(() => {
-    getAllCompanies();
-  }, [companies]);
+    const fetchCompanies = async () => {
+      try {
+        const response = await fetch('http://localhost:4000/api/companies/all-companies');
+        const data = await response.json();
+        setCompanies(data);
+      } catch (error) {
+        console.error('Error fetching companies:', error);
+      }
+    };
+
+    fetchCompanies();
+  }, []);
 
   return (
     <div className="wrapper">
@@ -18,8 +27,10 @@ export default function Home() {
       </div>
       <div className="content-container">
         <ul className="companies-list">
-            {companies.map((company: Company) => (
-              <li key={company.id}><CompanyCard id={company.id} name={company.name} phone={company.phone} email={company.email} address={company.address}/></li>
+          {companies.map((company: Company) => (
+            <li key={company._id}>
+              <CompanyCard _id={company._id} name={company.name} phone={company.phone} email={company.email}/>
+            </li>
           ))}
         </ul>
       </div>

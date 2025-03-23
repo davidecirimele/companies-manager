@@ -5,7 +5,7 @@ import AddressForm from '@/app/Components/AddressForm';
 import CompanyForm from "@/app/Components/CompanyForm";
 import { useState, useEffect } from "react";
 
-async function handleSubmit(event: React.FormEvent, form_data: Object, createCompany: any) {
+async function handleSubmit(event: React.FormEvent, form_data: Object) {
     event.preventDefault();
     let isFormValid = true;
 
@@ -39,31 +39,49 @@ async function handleSubmit(event: React.FormEvent, form_data: Object, createCom
             address: address
         }
 
-        createCompany(company);
+        const response = await fetch('http://localhost:4000/api/companies/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(company)
+        });
+
+        console.log(response);
     }
   }
 
-  function handleClear(setName: any, setEmail: any, setPhone: any, setStreet: any, setCountry: any, setPostalCode: any, setCountryCode: any, setCity: any) {
-    setName("");
-    setEmail("");
-    setPhone("");
-    setStreet("");
-    setCountry("");
-    setPostalCode("");
-    setCountryCode("");
-    setCity("");
+  function handleClear(setForm1:any, setForm2:any) {
+    setForm1({
+        name : "",
+        email: "",
+        phone: ""
+    });
+
+    setForm2({
+        street: "",
+        country: "",
+        postalCode: "",
+        countryCode: "",
+        city: ""
+    })
 }
 
 export default function createCompany() {
-    const { createCompany } = useApi();
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [street, setStreet] = useState("");
-    const [country, setCountry] = useState("");
-    const [postalCode, setPostalCode] = useState("");
-    const [countryCode, setCountryCode] = useState("");
-    const [city, setCity] = useState("");
+
+    const [companyform, setCompanyForm] = useState({
+        name : "",
+        email: "",
+        phone: ""
+    });
+
+    const [addressform, setAddressForm] = useState({
+        street: "",
+        country: "",
+        postalCode: "",
+        countryCode: "",
+        city: ""
+    });
 
   return (
     <div className="wrapper">
@@ -71,11 +89,11 @@ export default function createCompany() {
         <h1>Add Company</h1>
         </div>
         <div className="content-container">
-              <CompanyForm name={name} setName={setName} email={email} setEmail={setEmail} phone={phone} setPhone={setPhone}></CompanyForm> 
-              <AddressForm street={street} setStreet={setStreet} city={city} setCity={setCity} country={country} setCountry={setCountry} countryCode={countryCode} setCountryCode={setCountryCode} postalCode={postalCode} setPostalCode = {setPostalCode}></AddressForm>
+              <CompanyForm form={companyform} setForm={setCompanyForm}></CompanyForm>
+                <AddressForm form={addressform} setForm={ setAddressForm}></AddressForm>
               <div className="buttons-wrapper"> 
-                  <button type="submit" className="form-button" id="saveButton" onClick={(e) => handleSubmit(e, { name, email, phone ,street, country, postalCode, countryCode, city}, createCompany)}>Add Company</button>
-                    <button className="form-button" id="clearButton" onClick={() => handleClear(setName, setEmail, setPhone, setStreet, setCountry, setPostalCode, setCountryCode, setCity)}>Clear</button>
+                  <button type="submit" className="form-button" id="saveButton" onClick={(e) => handleSubmit(e, { ...companyform, ...addressform })}>Add Company</button>
+                    <button className="form-button" id="clearButton" onClick={() => handleClear(setCompanyForm, setAddressForm)}>Clear</button>
               </div>
         </div>
     </div>

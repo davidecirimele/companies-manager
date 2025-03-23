@@ -76,3 +76,13 @@
     justify-content: center;
     align-items: center;
 }
+
+.selector{
+    color: white;
+    width: 100%;
+}
+
+.selector-option{
+    color: white;
+    width: 500px;
+}

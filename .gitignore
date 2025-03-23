@@ -1,5 +1,9 @@
 # Node modules
 companies_manager/node_modules/
+backend/myapp/node_modules/
+
+companies_manager/.env
+backend/myapp/.env
 
 # Log files
 npm-debug.log*

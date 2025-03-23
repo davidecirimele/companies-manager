@@ -1,12 +1,12 @@
 "use client";
 
-import { redirect,notFound, useParams } from "next/navigation";
+import { useRouter,notFound, useParams } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { useApi } from "@/app/api/api"
 import AddressForm  from "@/app/Components/AddressForm";
 import CompanyForm from "@/app/Components/CompanyForm";
 
-async function handleSubmit(event: React.FormEvent, form_data: Object, editCompany: any) {
+async function handleSubmit(event: React.FormEvent, form_data: Object, param_id: string, router: any) {
     event.preventDefault();
     let isFormValid = true;
 
@@ -18,12 +18,15 @@ async function handleSubmit(event: React.FormEvent, form_data: Object, editCompa
         }
     });
 
+    console.log("ARRAY: "+arrayObject);
+
     if (isFormValid) {
 
-        const [id, name, email, phone, street, country, postalCode, countryCode, city] = arrayObject;
+        const [name, email, phone, _id, street, country, postalCode, countryCode, city] = arrayObject;
         const text = street + "," + postalCode + " " + city + "," + country;
 
         const address: Address = {
+            _id: _id, 
             street: street,
             postalCode: postalCode,
             country: country,
@@ -39,62 +42,102 @@ async function handleSubmit(event: React.FormEvent, form_data: Object, editCompa
             address: address
         }
 
-        editCompany(id, company);
-        redirect("/");
+        console.log(address);
+
+        const response = await fetch(`http://localhost:4000/api/companies/edit/${param_id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ company: company, address: address })
+        });
+
+        console.log(response);
+        router.push("/");
     }
   }
 
-  function handleClear(setName: any, setEmail: any, setPhone: any, setStreet: any, setCountry: any, setPostalCode: any, setCountryCode: any, setCity: any) {
-      setName("");
-    setEmail("");
-      setPhone("");
-    setStreet("");
-    setCountry("");
-    setPostalCode("");
-    setCountryCode("");
-    setCity("");
-    }
+  function handleClear(setForm1:any, setForm2:any) {
+    setForm1({
+        name : "",
+        email: "",
+        phone: ""
+    });
+
+    setForm2({
+        street: "",
+        country: "",
+        postalCode: "",
+        countryCode: "",
+        city: ""
+    })
+}
 
 export default function editCompany() {
-    const { getCompany, editCompany } = useApi();
     const params = useParams();
     const id = params.id as string;
-    const [company, setCompany] = useState<Partial<Company>>({});
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [street, setStreet] = useState("");
-    const [country, setCountry] = useState("");
-    const [postalCode, setPostalCode] = useState("");
-    const [countryCode, setCountryCode] = useState("");
-    const [city, setCity] = useState("");
+    const router = useRouter();
+    
+    const [companyform, setCompanyForm] = useState({
+        name : "",
+        email: "",
+        phone: ""
+    });
+
+    const [addressform, setAddressForm] = useState({
+        _id: "",
+        street: "",
+        country: "",
+        postalCode: "",
+        countryCode: "",
+        city: ""
+    });
 
     useEffect(() => {
-        const selectedCompany = getCompany(id);
-        console.log(selectedCompany);
-      if (selectedCompany) {
-        setCompany(selectedCompany);
-        setName(company.name!);
-        setEmail(company.email!);
-        setPhone(company.phone!);
-            console.log("company found:", selectedCompany);
-        } else {
-            console.log("company not found for id:", id);
-      }
-      if (company?.address) {
-        console.log("Address:", company.address.text);
-        
-        setStreet(company.address!.street);
-        setCity(company.address!.city);
-        setCountry(company.address!.country);
-        setCountryCode(company.address!.countryCode!);
-        setPostalCode(company.address!.postalCode);
-      }
-    }, [company]);
+        if (id) {
+            const fetchCompany = async () => {
+                try {
+                    const response1 = await fetch(`http://localhost:4000/api/companies/${id}`);
+                
+                    const company_data = await response1.json();
 
-  if (!company) {
-    notFound();
-  }
+                    console.log(company_data);
+                
+                    const response2 = await fetch(`http://localhost:4000/api/addresses/${company_data.address}`);
+                            
+                    const address_data = await response2.json();
+
+                    console.log(address_data);
+                
+                    
+
+                    if (company_data) {
+
+                        setCompanyForm({
+                            name: company_data.name || "",
+                            email: company_data.email || "",
+                            phone: company_data.phone || ""
+                        });
+            
+
+                        setAddressForm({
+                            _id: address_data._id,
+                            street: address_data.street || "",
+                            country: address_data.country || "",
+                            postalCode: address_data.postalCode || "",
+                            countryCode: address_data.countryCode || "",
+                            city: address_data.city || ""
+                        });
+                    }
+                    
+                } catch (error) {
+                    console.error('Error fetching company:', error);
+                }
+            };
+            
+            fetchCompany();
+        }
+    }, [id]);
     
   return (
     <div className="wrapper">
@@ -102,11 +145,11 @@ export default function editCompany() {
             <h1>Edit Company</h1>
         </div>
         <div className="content-container">
-        <CompanyForm name={name} setName={setName} email={email} setEmail={setEmail} phone={phone} setPhone={setPhone}></CompanyForm>
-          <AddressForm street={street} setStreet={setStreet} city={city} setCity={setCity} country={country} setCountry={setCountry} countryCode={countryCode} setCountryCode={setCountryCode} postalCode={postalCode} setPostalCode = {setPostalCode}></AddressForm>
+            <CompanyForm form={companyform} setForm={setCompanyForm}></CompanyForm>
+            <AddressForm form={addressform} setForm={ setAddressForm}></AddressForm>   
               <div className="buttons-wrapper"> 
-                  <button type="submit" className="form-button" id="saveButton" onClick={(e) => handleSubmit(e, { id, name, email, phone, street, country, postalCode, countryCode, city}, editCompany)}>Edit Company</button>
-                    <button className="form-button" id="clearButton" onClick={() => handleClear(setName, setEmail, setPhone, setStreet, setCountry, setPostalCode, setCountryCode, setCity)}>Clear</button>
+                  <button type="submit" className="form-button" id="saveButton" onClick={(e) => handleSubmit(e, { ...companyform, ...addressform }, id, router)}>Edit Company</button>
+                    <button className="form-button" id="clearButton" onClick={() => handleClear(setCompanyForm, setAddressForm)}>Clear</button>
               </div>
         </div>
     </div>

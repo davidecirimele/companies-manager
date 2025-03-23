@@ -7,25 +7,23 @@ import { useApi } from '@/app/api/api';
 import { EmployeeCard } from "@/app/Components/EmployeeCard";
 
 export default function EmployeePage() {
-    const { getEmployee } = useApi();
     const params = useParams();
     const id = params.id as string;
     const [employee, setEmployee] = useState<Partial<Employee>>({});
 
     useEffect(() => {
-        const selectedEmployee = getEmployee(id);
-        console.log(selectedEmployee);
-        if (selectedEmployee) {
-            console.log("Employee found:", selectedEmployee);
-            setEmployee(selectedEmployee);
-        } else {
-            console.log("Employee not found for id:", id);
-        }
-      }, [employee]);
-
-  if (!employee) {
-    notFound();
-  }
+        const fetchEmployee = async () => {
+          try {
+            const response = await fetch(`http://localhost:4000/api/employees/${id}`);
+            const data = await response.json();
+            setEmployee(data);
+          } catch (error) {
+            console.error('Error fetching employees:', error);
+          }
+        };
+    
+        fetchEmployee();
+      }, []);
 
   return (
     <div className="wrapper">
@@ -33,7 +31,7 @@ export default function EmployeePage() {
             <h1>Employee Info</h1>
           </div>
           <div className="content-container">
-            <EmployeeCard id={employee.id} name={employee.name} surname={employee.surname} phone={employee.phone} role={employee.role} company={employee.company} email={employee.email} address={employee.address}/>
+            <EmployeeCard _id={employee._id} name={employee.name} surname={employee.surname} phone={employee.phone} role={employee.role} company={employee.company} email={employee.email} address={employee.address}/>
           </div>
     </div>
   );
